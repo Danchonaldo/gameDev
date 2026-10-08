@@ -12,13 +12,28 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f3453ad4eb36741caab7d8f74550910c
   - enabled: 1
-    path: Assets/Scenes/levels.unity
+    path: Assets/Scenes/unlockLevel1.unity
     guid: 99d96288a855b49d587f2d64a107ce79
+  - enabled: 1
+    path: Assets/Scenes/unlockLevel2.unity
+    guid: 1cbc96c9c3a69417d8e58556307dac54
+  - enabled: 1
+    path: Assets/Scenes/unlockLevel3.unity
+    guid: 1a88929e450f448e4be8380bb54781ec
   - enabled: 1
     path: Assets/Scenes/LevelGallery.unity
     guid: acd7f2208f42146c0aba273289625605
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: c61c574a54bbe47eca840ee85429b681
+  - enabled: 1
+    path: "Assets/Scenes/\u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0443\u0440\u043E\u0432\u043D\u0438/\u0443\u0440\u043E\u0432\u0435\u043D\u044C 1.unity"
+    guid: ac456c0b53c254796a3ff20a4f55c7ca
+  - enabled: 1
+    path: "Assets/Scenes/\u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0443\u0440\u043E\u0432\u043D\u0438/\u0443\u0440\u043E\u0432\u0435\u043D\u044C 2.unity"
+    guid: ce7d60489a41b44018bf044fce121b67
+  - enabled: 1
+    path: "Assets/Scenes/\u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0443\u0440\u043E\u0432\u043D\u0438/\u0443\u0440\u043E\u0432\u0435\u043D\u044C 3.unity"
+    guid: ec0a9b70096334be08cb46b574cb170d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

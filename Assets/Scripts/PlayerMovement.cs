@@ -1,12 +1,18 @@
+
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 7f;
+    public float jumpForce = 9f;
+    public float highJumpForce = 14f;
+    private bool hasHighJump = false;
+    public float highJumpDuration = 3f;
+    private float highJumpTimer = 0f;
 
     private Rigidbody2D rb;
-    private bool isGrounded = false;
+    private float moveInput;
+    private bool isGrounded;
 
     void Start()
     {
@@ -15,31 +21,43 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Движение
-        float move = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal");
 
-        rb.linearVelocity = new Vector2(
-            move * moveSpeed,
-            rb.linearVelocity.y
-        );
-
-        // Один прыжок на одно нажатие Space
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.linearVelocity = new Vector2(
-                rb.linearVelocity.x,
-                jumpForce
-            );
-
+            float currentJump = hasHighJump ? highJumpForce : jumpForce;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, currentJump);
             isGrounded = false;
         }
+        if (hasHighJump){
+            highJumpTimer -= Time.deltaTime;
+            if (highJumpTimer <= 0f) {
+                hasHighJump = false;
+                highJumpTimer = 0f;
+                }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector2(
+            moveInput * moveSpeed,
+            rb.linearVelocity.y
+        );
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal.y > 0.5f)
+                {
+                    isGrounded = true;
+                    break;
+                }
+            }
         }
     }
 
@@ -51,22 +69,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.CompareTag("YellowTriangle"))
+    public void UnlockHighJump()
     {
-        jumpForce = 12f;
-        Destroy(other.gameObject);
-
-        Debug.Log("HIGH JUMP UNLOCKED!");
+        hasHighJump = true;
+        highJumpTimer = highJumpDuration;
     }
 
-    if (other.CompareTag("Finish"))
-{
-    Debug.Log("LEVEL 1 COMPLETE!");
-
-    LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-    levelManager.CompleteLevel();
-}
-}
 }
