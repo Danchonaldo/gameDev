@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 public class LevelFinish : MonoBehaviour
 {
     public GameObject completeCanvas;
-    public string levelSelectScene = "LevelSelect";
+
+    
+    public int currentLevel = 1;
+
+    
+    public string nextScene = "unlockLevel2";
 
     private bool completed = false;
 
@@ -16,27 +21,33 @@ public class LevelFinish : MonoBehaviour
 
         completed = true;
 
-        // Разблокируем Level 2
+        // Сохраняем открытие следующего уровня
         int unlocked = PlayerPrefs.GetInt("UnlockedLevel", 1);
-        PlayerPrefs.SetInt("UnlockedLevel", Mathf.Max(unlocked, 2));
+
+        PlayerPrefs.SetInt(
+            "UnlockedLevel",
+            Mathf.Max(unlocked, Mathf.Min(currentLevel + 1, 3))
+        );
+
         PlayerPrefs.Save();
 
-        completeCanvas.SetActive(true);
+        if (completeCanvas != null)
+            completeCanvas.SetActive(true);
+
         Time.timeScale = 0f;
     }
 
     public void FinishLevel()
     {
         Time.timeScale = 1f;
-        PlayerPrefs.SetInt("UnlockedLevel", 2);
-        PlayerPrefs.Save();
 
-        SceneManager.LoadScene("unlockLevel2");
+        SceneManager.LoadScene(nextScene);
     }
 
     public void ReplayLevel()
     {
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(
             SceneManager.GetActiveScene().name
         );

@@ -7,11 +7,30 @@ public class PlayerAnimation : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    private bool highJumpActive = false;
+    private bool swimmingActive = false;
+    private bool inWater = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void SetHighJumpActive(bool active)
+    {
+        highJumpActive = active;
+    }
+
+    public void SetSwimmingActive(bool active)
+    {
+        swimmingActive = active;
+    }
+
+    public void SetInWater(bool active)
+    {
+        inWater = active;
     }
 
     void Update()
@@ -23,17 +42,41 @@ public class PlayerAnimation : MonoBehaviour
             spriteRenderer.flipX = horizontal < 0;
         }
 
-        if (Mathf.Abs(rb.linearVelocity.y) > 0.15f)
+        bool jumping = Mathf.Abs(rb.linearVelocity.y) > 0.15f;
+        bool walking = Mathf.Abs(horizontal) > 0.1f;
+
+        if (swimmingActive && inWater)
         {
-            animator.Play("BlobJump");
+            PlayAnimation("BlueBlobSwim");
         }
-        else if (Mathf.Abs(horizontal) > 0.1f)
+        else if (highJumpActive)
         {
-            animator.Play("BlobWalk");
+            if (jumping)
+                PlayAnimation("HighJumpJump");
+            else
+                PlayAnimation("HighJumpIdle");
+        }
+        else if (swimmingActive)
+        {
+            PlayAnimation("BlueBlobIdle");
         }
         else
         {
-            animator.Play("BlobIdle");
+            if (jumping)
+                PlayAnimation("BlobJump");
+            else if (walking)
+                PlayAnimation("BlobWalk");
+            else
+                PlayAnimation("BlobIdle");
+        }
+    }
+
+    void PlayAnimation(string animationName)
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0)
+            .IsName(animationName))
+        {
+            animator.Play(animationName);
         }
     }
 }

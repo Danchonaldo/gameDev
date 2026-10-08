@@ -6,17 +6,21 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 9f;
     public float highJumpForce = 14f;
-    private bool hasHighJump = false;
     public float highJumpDuration = 3f;
+
+    private bool hasHighJump = false;
     private float highJumpTimer = 0f;
 
     private Rigidbody2D rb;
+    private PlayerAnimation playerAnimation;
+
     private float moveInput;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     void Update()
@@ -25,16 +29,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            float currentJump = hasHighJump ? highJumpForce : jumpForce;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, currentJump);
+            float currentJump = hasHighJump
+                ? highJumpForce
+                : jumpForce;
+
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                currentJump
+            );
+
             isGrounded = false;
         }
-        if (hasHighJump){
+
+        if (hasHighJump)
+        {
             highJumpTimer -= Time.deltaTime;
-            if (highJumpTimer <= 0f) {
+
+            if (highJumpTimer <= 0f)
+            {
                 hasHighJump = false;
                 highJumpTimer = 0f;
-                }
+
+                if (playerAnimation != null)
+                    playerAnimation.SetHighJumpActive(false);
+            }
         }
     }
 
@@ -64,15 +82,15 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-        {
             isGrounded = false;
-        }
     }
 
     public void UnlockHighJump()
     {
         hasHighJump = true;
         highJumpTimer = highJumpDuration;
-    }
 
+        if (playerAnimation != null)
+            playerAnimation.SetHighJumpActive(true);
+    }
 }

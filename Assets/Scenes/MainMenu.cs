@@ -61,4 +61,21 @@ public class MainMenu : MonoBehaviour
     }
 
 
+
+
+
+    public void UnlockLevel1()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+    public void UnlockLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+    public void UnlockLevel3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
+
 }

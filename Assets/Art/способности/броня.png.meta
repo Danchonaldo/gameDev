@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 5f94abde606a646a5ae5c1a0c64bbdf0
+guid: 3a3f1f33f7ed140cd8be5da38266977a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5264637042499186980
-    second: blob - fire attack_0
+      213: 7598634071280337103
+    second: "\u0431\u0440\u043E\u043D\u044F_0"
   - first:
-      213: -5219743180617243117
-    second: blob - fire attack_1
+      213: 4914327951759197497
+    second: "\u0431\u0440\u043E\u043D\u044F_1"
+  - first:
+      213: 4501978173329163731
+    second: "\u0431\u0440\u043E\u043D\u044F_2"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blob - fire attack_0
+      name: "\u0431\u0440\u043E\u043D\u044F_0"
       rect:
         serializedVersion: 2
-        x: 38
+        x: 0
         y: 0
-        width: 1264
-        height: 1176
+        width: 1334
+        height: 1179
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 421f6853f7fbf0940800000000000000
-      internalID: 5264637042499186980
+      spriteID: fc048d4bd65c37960800000000000000
+      internalID: 7598634071280337103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blob - fire attack_1
+      name: "\u0431\u0440\u043E\u043D\u044F_1"
       rect:
         serializedVersion: 2
-        x: 51
-        y: 509
-        width: 84
-        height: 99
+        x: 0
+        y: 1077
+        width: 6
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,8 +158,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 316aa8c8b3fbf87b0800000000000000
-      internalID: -5219743180617243117
+      spriteID: 93541622c33333440800000000000000
+      internalID: 4914327951759197497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0431\u0440\u043E\u043D\u044F_2"
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 507
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5c8dfcb4d3a7e30800000000000000
+      internalID: 4501978173329163731
       vertices: []
       indices: 
       edges: []
@@ -175,8 +200,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blob - fire attack_0: 5264637042499186980
-      blob - fire attack_1: -5219743180617243117
+      "\u0431\u0440\u043E\u043D\u044F_0": 7598634071280337103
+      "\u0431\u0440\u043E\u043D\u044F_1": 4914327951759197497
+      "\u0431\u0440\u043E\u043D\u044F_2": 4501978173329163731
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
